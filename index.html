@@ -1,34 +1,28 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>👀👀👀</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      background: linear-gradient(120deg, #fbc2eb 0%, #a6c1ee 100%);
-      font-family: 'Georgia', serif;
+      margin: 0;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      background: linear-gradient(to right, #ffe6f0, #e6fff2);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
       overflow: hidden;
     }
 
     .envelope {
       width: 200px;
-      height: 150px;
-      background: #fff;
+      height: 120px;
+      background: green;
       position: relative;
       cursor: pointer;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
       border-radius: 10px;
-      transition: transform 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
     }
 
     .envelope:hover {
@@ -36,157 +30,127 @@
     }
 
     .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 0;
       height: 0;
       border-left: 100px solid transparent;
       border-right: 100px solid transparent;
-      border-bottom: 75px solid #d63384;
-      position: absolute;
-      top: -75px;
-      left: 0;
-      border-radius: 10px 10px 0 0;
+      border-bottom: 60px solid #006400;
+      transition: transform 0.5s ease;
+      transform-origin: top;
     }
 
-    .letter-container {
+    .letter {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
       display: none;
-      background-color: white;
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-      max-width: 600px;
       text-align: center;
-      animation: fadeIn 2s ease-in;
-      position: relative;
+      overflow: auto;
     }
 
-    h1 {
-      color: #d63384;
-      font-size: 2.5em;
+    .letter h1 {
+      margin: 0;
+      color: #ff66b2;
     }
 
-    .typewriter-text {
-      font-size: 1.1em;
-      line-height: 1.6;
-      color: #333;
-      margin-top: 20px;
-      white-space: pre-wrap;
-      overflow: hidden;
-      border-right: 2px solid #333;
-      width: 100%;
-      max-width: 100%;
-      animation: blink 1s step-end infinite;
+    .images {
+      margin-top: 15px;
     }
 
-    @keyframes blink {
-      0%, 100% { border-color: transparent; }
-      50% { border-color: #333; }
+    .images img {
+      width: 100px;
+      margin: 10px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    .signature {
-      margin-top: 40px;
-      font-style: italic;
-      font-size: 1.2em;
-      color: #555;
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: fall 3s linear forwards;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    #confetti-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- Envelope -->
-<div class="envelope" onclick="openLetter()">
-  <div class="flap"></div>
-</div>
+  <!-- Background music (starts after click) -->
+  <audio id="bg-music" src="6ee99733-23db-4d66-be37-368f506d9edd.mp3" loop></audio>
 
-<!-- Letter Content -->
-<canvas id="confetti-canvas"></canvas>
-
-<div class="letter-container" id="letter">
-  <h1>Dear lzysrs,</h1>
-  <div class="typewriter-text" id="typedText"></div>
-  <div class="signature">
-    From a certified cat lover,<br>
-    — Vyvyy ❤️
-  </div>
-</div>
-
-<!-- Background Music -->
-<audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_beb94a6e59.mp3?filename=romantic-piano-ambient-119417.mp3" type="audio/mp3">
-</audio>
-
-<script>
-  const text = `
-HIIII, IT'S YOUR DAY OF EXISTENCE!!! 
-
+  <div class="envelope" id="envelope">
+    <div class="flap" id="flap"></div>
+    <div class="letter" id="letter">
+      <h1>HIII, IT'S YOUR EXISTENCE DAY!!!</h1>
+      <p>
 Happiest birthday, Neil A.K.A lazysaurus!!!
 o(〃＾▽＾〃)o 
 
-Our friendship started when I met you as "Vegaz," whom I treated as my younger brother in the RPW. You're my first online friend at that time because I was just encouraged to join rpw by my sister.
+Our friendship started when I met you as "Vegaz," whom I treated as my younger brother in the RPW.
+You're my first online friend at that time because I was just encouraged to join rpw by my sister.
 I'm glad she convinced me to join for if she hadn't, I wouldn't have met you. 
-Honestly, you have this way of filling the quiet and empty spaces with your unique jokes and vibe in my boring life during that time (that I get so excited whenever I see your profile pops up in my notifications. ) 
+        
+Honestly, you have this way of filling the quiet and empty spaces with your unique jokes and vibe in
+my boring life during that time (that I get so excited whenever I see your profile pops up in my notifications.) 
 
-Whenever I talk to you, I never feel like I am being judged, rather, I feel belong. You never made me feel like an outsider from the very beginning. You approached me and there I learned what having a genuine friend 
-feels like—being included, understood, and valued. I don't know how you do it—you have this way where you make every conversation exciting and sometimes educational (which I am very thankful for, because I am learning
-a lot from you ˃͈◡˂͈). 
+Whenever I talk to you, I never feel like I am being judged, rather, I feel belong. You never made me feel like an
+outsider from the very beginning. You approached me and there I learned what having a genuine friend feels like—
+being included, understood, and valued. I don't know how you do it—you have this way where you make every conversation
+exciting and sometimes educational (which I am very thankful for, because I am learninga lot from you ˃͈◡˂͈). 
 
-Through this letter, I've finally expressed my appreciation towards you for being my comfort and happy place. You've taught me many things that I will carry and treasure forever.
-Among all of my friends, you're one of those people whom I trust the most. ILY, FAVORITE HOOMANNN! 💞💞💞💞`;
+Through this letter, I've finally expressed my appreciation towards you for being my comfort and happy place. 
+You've taught me great things that I will carry and treasure forever.Among all of my friends, you're one of those people 
+whom I trust the most. ILY, FAVORITE HOOMANNN! 💞💞💞💞</p></p>
+      <div class="images">
+        <img src="bday cat.jfif" alt="Birthday Cat">
+        <img src="white cat.jfif" alt="Pixel Cat">
+      </div>
+    </div>
+  </div>
 
-  let index = 0;
+  <script>
+    const envelope = document.getElementById("envelope");
+    const flap = document.getElementById("flap");
+    const letter = document.getElementById("letter");
+    const bgMusic = document.getElementById("bg-music");
 
-  function typeWriter() {
-    const typedText = document.getElementById("typedText");
-    if (index < text.length) {
-      typedText.innerHTML += text.charAt(index);
-      index++;
-      setTimeout(typeWriter, 40); // Typing speed
-    }
-  }
+    envelope.addEventListener("click", () => {
+      flap.style.transform = "rotateX(180deg)";
+      setTimeout(() => {
+        letter.style.display = "block";
+        launchConfetti();
+        bgMusic.play(); // 🎵 start music only after click
+      }, 500);
+    });
 
-  function openLetter() {
-    document.querySelector('.envelope').style.display = 'none';
-    const letter = document.getElementById('letter');
-    letter.style.display = 'block';
-    document.getElementById('bgMusic').play();
-    typeWriter();
-    launchConfetti();
-  }
-
-  // 🎉 Confetti Animation (canvas-confetti CDN)
-  function launchConfetti() {
-    const duration = 5 * 1000;
-    const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-    const interval = setInterval(function () {
-      const timeLeft = animationEnd - Date.now();
-      if (timeLeft <= 0) {
-        return clearInterval(interval);
+    function launchConfetti() {
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        document.body.appendChild(confetti);
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.backgroundColor =
+          ["#ff66b2", "#66ff99", "#66ccff", "#ffff66", "#ff9966"][
+            Math.floor(Math.random() * 5)
+          ];
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        setTimeout(() => confetti.remove(), 5000);
       }
-
-      const particleCount = 50 * (timeLeft / duration);
-      confetti(Object.assign({}, defaults, { particleCount, origin: { x: Math.random(), y: Math.random() - 0.2 } }));
-    }, 250);
-  }
-</script>
-
-<!-- 🎉 Confetti Library -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-
+    }
+  </script>
 </body>
 </html>
